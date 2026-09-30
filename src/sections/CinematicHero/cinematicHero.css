@@ -1,0 +1,263 @@
+.cinematicHero {
+  position: relative;
+
+  width: 100%;
+  height: 100vh;
+  min-height: 720px;
+
+  overflow: hidden;
+
+  background: #d4140b;
+
+  isolation: isolate;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.cinematicHero__background {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 42% 48%,
+      rgba(255, 70, 45, 0.18) 0%,
+      rgba(255, 70, 45, 0) 42%
+    ),
+    #d4140b;
+}
+
+.cinematicHero__shape {
+  position: absolute;
+
+  pointer-events: none;
+
+  transform: skewX(-13deg);
+}
+
+.cinematicHero__shape--left {
+  top: -18%;
+  left: -8%;
+
+  width: 32%;
+  height: 142%;
+
+  background: rgba(70, 0, 0, 0.17);
+}
+
+.cinematicHero__shape--center {
+  top: -20%;
+  left: 46%;
+
+  width: 18%;
+  height: 145%;
+
+  background: rgba(110, 0, 0, 0.12);
+}
+
+.cinematicHero__shape--right {
+  top: -20%;
+  right: 3%;
+
+  width: 27%;
+  height: 145%;
+
+  background: rgba(75, 0, 0, 0.16);
+}
+
+/* =========================================================
+   NAVIGATION
+   ========================================================= */
+
+.cinematicHero__nav {
+  position: absolute;
+
+  inset: 0 0 auto 0;
+
+  z-index: 30;
+
+  pointer-events: auto;
+
+  will-change:
+    opacity,
+    transform;
+}
+
+/* =========================================================
+   BIKE
+   ========================================================= */
+
+.cinematicHero__bike {
+  position: absolute;
+
+  left: -5%;
+  top: 52%;
+
+  z-index: 10;
+
+  width: min(80vw, 1320px);
+
+  aspect-ratio: 1.52 / 1;
+
+  transform:
+    translateY(-50%);
+
+  transform-origin:
+    48%
+    55%;
+
+  will-change:
+    transform,
+    opacity;
+
+  pointer-events: none;
+}
+
+.cinematicHero__bikeImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: center;
+
+  filter:
+    drop-shadow(
+      0 28px 22px
+      rgba(0, 0, 0, 0.24)
+    )
+    drop-shadow(
+      0 60px 60px
+      rgba(0, 0, 0, 0.13)
+    );
+}
+
+/* =========================================================
+   FLOOR SHADOW
+   ========================================================= */
+
+.cinematicHero__floor {
+  position: absolute;
+
+  left: 4%;
+  bottom: 4%;
+
+  z-index: 4;
+
+  width: 74%;
+  height: 14%;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(0, 0, 0, 0.34) 0%,
+      rgba(0, 0, 0, 0.18) 33%,
+      rgba(0, 0, 0, 0.06) 52%,
+      transparent 74%
+    );
+
+  filter: blur(13px);
+
+  transform: scaleX(1.05);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   SMALL HERO LABEL
+   ========================================================= */
+
+.cinematicHero__microcopy {
+  position: absolute;
+
+  left: var(--page-padding);
+  bottom: 32px;
+
+  z-index: 20;
+
+  color:
+    rgba(
+      255,
+      255,
+      255,
+      0.74
+    );
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.24em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .cinematicHero__bike {
+    left: -10%;
+
+    top: 53%;
+
+    width: 96vw;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .cinematicHero {
+    min-height: 620px;
+  }
+
+  .cinematicHero__bike {
+    left: -23%;
+
+    top: 55%;
+
+    width: 128vw;
+  }
+
+  .cinematicHero__shape--left {
+    left: -20%;
+
+    width: 48%;
+  }
+
+  .cinematicHero__shape--center {
+    left: 48%;
+
+    width: 28%;
+  }
+
+  .cinematicHero__shape--right {
+    right: -14%;
+
+    width: 42%;
+  }
+
+  .cinematicHero__floor {
+    left: 0;
+
+    bottom: 7%;
+
+    width: 96%;
+  }
+
+  .cinematicHero__microcopy {
+    left: 20px;
+    bottom: 22px;
+
+    font-size: 9px;
+  }
+}
