@@ -1,0 +1,63 @@
+:root {
+  --vantor-red: #e10600;
+  --vantor-red-dark: #a90000;
+
+  --vantor-black: #050505;
+  --vantor-black-soft: #0d0d0d;
+  --vantor-charcoal: #151515;
+
+  --vantor-white: #f2f0e8;
+  --vantor-muted: #9a9a9a;
+
+  --vantor-border: rgba(255, 255, 255, 0.12);
+
+  --page-padding: clamp(20px, 3vw, 56px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  background: var(--vantor-black);
+  color: var(--vantor-white);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background: var(--vantor-black);
+  color: var(--vantor-white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+button,
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+}
+
+img,
+canvas,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--vantor-red);
+  color: var(--vantor-white);
+}
