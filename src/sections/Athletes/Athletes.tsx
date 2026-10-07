@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import { asset } from "@/lib/asset";
 import "./athletes.css";
 
 const athletes = [
@@ -78,12 +79,6 @@ export default function Athletes() {
     }
 
     const ctx = gsap.context(() => {
-      /*
-       * =====================================================
-       * INITIAL STATES
-       * =====================================================
-       */
-
       gsap.set(lines, {
         scaleX: 0,
         transformOrigin: "left center",
@@ -114,12 +109,6 @@ export default function Athletes() {
         force3D: true,
       });
 
-      /*
-       * =====================================================
-       * MASTER TIMELINE
-       * =====================================================
-       */
-
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: section,
@@ -130,9 +119,6 @@ export default function Athletes() {
         },
       });
 
-      /*
-       * Opening hold
-       */
       timeline.to(
         {},
         {
@@ -140,9 +126,6 @@ export default function Athletes() {
         },
       );
 
-      /*
-       * Racing lines
-       */
       timeline.to(
         lines,
         {
@@ -153,9 +136,6 @@ export default function Athletes() {
         0.18,
       );
 
-      /*
-       * Title
-       */
       timeline.to(
         title,
         {
@@ -168,9 +148,6 @@ export default function Athletes() {
         0.28,
       );
 
-      /*
-       * Description
-       */
       timeline.to(
         description,
         {
@@ -182,9 +159,6 @@ export default function Athletes() {
         0.48,
       );
 
-      /*
-       * Top row arrives
-       */
       timeline.to(
         topRowElement,
         {
@@ -198,9 +172,6 @@ export default function Athletes() {
         0.72,
       );
 
-      /*
-       * Bottom row arrives
-       */
       timeline.to(
         bottomRowElement,
         {
@@ -213,12 +184,6 @@ export default function Athletes() {
         },
         0.92,
       );
-
-      /*
-       * =====================================================
-       * CONTINUOUS ROW MOVEMENT
-       * =====================================================
-       */
 
       timeline.to(
         topRowElement,
@@ -243,7 +208,7 @@ export default function Athletes() {
       );
 
       /*
-       * Final hold
+       * Full athlete composition hold
        */
       timeline.to(
         {},
@@ -267,18 +232,10 @@ export default function Athletes() {
     >
       <div className="athletes__sticky">
 
-        {/* ===============================================
-            BACKGROUND
-        =============================================== */}
-
         <div
           className="athletes__background"
           aria-hidden="true"
         />
-
-        {/* ===============================================
-            TOP RACING LINES
-        =============================================== */}
 
         <div
           ref={linesRef}
@@ -289,10 +246,6 @@ export default function Athletes() {
           <span />
           <span />
         </div>
-
-        {/* ===============================================
-            HEADER
-        =============================================== */}
 
         <div className="athletes__header">
 
@@ -319,13 +272,7 @@ export default function Athletes() {
 
         </div>
 
-        {/* ===============================================
-            ATHLETE ROWS
-        =============================================== */}
-
         <div className="athletes__rows">
-
-          {/* TOP ROW */}
 
           <div
             ref={topRowRef}
@@ -338,8 +285,6 @@ export default function Athletes() {
               />
             ))}
           </div>
-
-          {/* BOTTOM ROW */}
 
           <div
             ref={bottomRowRef}
@@ -375,7 +320,7 @@ function AthleteCard({
       <div className="athletes__cardInner">
 
         <Image
-          src={athlete.image}
+          src={asset(athlete.image)}
           alt={athlete.name}
           fill
           unoptimized

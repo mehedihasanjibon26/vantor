@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import { asset } from "@/lib/asset";
 import "./new-drops.css";
 
 const products = [
@@ -59,18 +60,26 @@ const products = [
 export default function NewDrops() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  const titleRef = useRef<HTMLDivElement | null>(null);
-  const descriptionRef = useRef<HTMLParagraphElement | null>(null);
+  const titleRef =
+    useRef<HTMLDivElement | null>(null);
 
-  const cardsRef = useRef<HTMLDivElement[]>([]);
+  const descriptionRef =
+    useRef<HTMLParagraphElement | null>(null);
+
+  /*
+   * Cards are <article> elements,
+   * so HTMLElement is the correct ref type.
+   */
+  const cardsRef =
+    useRef<HTMLElement[]>([]);
 
   useEffect(() => {
     const section = sectionRef.current;
-
     const title = titleRef.current;
     const description = descriptionRef.current;
 
-    const cards = cardsRef.current.filter(Boolean);
+    const cards =
+      cardsRef.current.filter(Boolean);
 
     if (
       !section ||
@@ -203,8 +212,9 @@ export default function NewDrops() {
             ref={descriptionRef}
             className="newDrops__description"
           >
-            Engineered for motion. Every drop is built with
-            precision, performance, and a rider&apos;s mindset.
+            Engineered for motion. Every drop is built
+            with precision, performance, and a
+            rider&apos;s mindset.
           </p>
 
         </div>
@@ -221,7 +231,6 @@ export default function NewDrops() {
               }}
               className={`newDrops__card newDrops__card--${index + 1}`}
             >
-
               <span className="newDrops__cardNumber">
                 {product.id}
               </span>
@@ -230,7 +239,7 @@ export default function NewDrops() {
 
                 <div className="newDrops__imageLayer newDrops__imageLayer--default">
                   <Image
-                    src={product.image}
+                    src={asset(product.image)}
                     alt={product.name}
                     fill
                     unoptimized
@@ -241,7 +250,9 @@ export default function NewDrops() {
 
                 <div className="newDrops__imageLayer newDrops__imageLayer--hover">
                   <Image
-                    src="/images/athletes/rider-default.png"
+                    src={asset(
+                      "/images/athletes/rider-default.png",
+                    )}
                     alt=""
                     fill
                     unoptimized

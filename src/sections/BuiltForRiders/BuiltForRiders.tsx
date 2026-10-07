@@ -3,69 +3,69 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import { asset } from "@/lib/asset";
 import "./built-for-riders.css";
 
 export default function BuiltForRiders() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
+  const bikeRef = useRef<HTMLDivElement | null>(null);
   const horseRef = useRef<HTMLDivElement | null>(null);
 
-  const bikeRef = useRef<HTMLDivElement | null>(null);
-  const bikeFloatRef = useRef<HTMLDivElement | null>(null);
-
   const eyebrowRef = useRef<HTMLDivElement | null>(null);
+
   const builtRef = useRef<HTMLDivElement | null>(null);
   const forRef = useRef<HTMLDivElement | null>(null);
   const ridersRef = useRef<HTMLDivElement | null>(null);
 
   const statsRef = useRef<HTMLDivElement | null>(null);
 
-  const hpRef = useRef<HTMLSpanElement | null>(null);
-  const weightRef = useRef<HTMLSpanElement | null>(null);
-  const rpmRef = useRef<HTMLSpanElement | null>(null);
+  const statOneRef = useRef<HTMLSpanElement | null>(null);
+  const statTwoRef = useRef<HTMLSpanElement | null>(null);
+  const statThreeRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
 
+    const bike = bikeRef.current;
     const horse = horseRef.current;
 
-    const bike = bikeRef.current;
-    const bikeFloat = bikeFloatRef.current;
-
     const eyebrow = eyebrowRef.current;
+
     const built = builtRef.current;
     const forWord = forRef.current;
     const riders = ridersRef.current;
 
     const stats = statsRef.current;
 
-    const hp = hpRef.current;
-    const weight = weightRef.current;
-    const rpm = rpmRef.current;
+    const statOne = statOneRef.current;
+    const statTwo = statTwoRef.current;
+    const statThree = statThreeRef.current;
 
     if (
       !section ||
-      !horse ||
       !bike ||
-      !bikeFloat ||
+      !horse ||
       !eyebrow ||
       !built ||
       !forWord ||
       !riders ||
       !stats ||
-      !hp ||
-      !weight ||
-      !rpm
+      !statOne ||
+      !statTwo ||
+      !statThree
     ) {
       return;
     }
 
     const ctx = gsap.context(() => {
-      /*
-       * =====================================================
-       * INITIAL STATES
-       * =====================================================
-       */
+      gsap.set(bike, {
+        x: "-30vw",
+        y: "12vh",
+        scale: 0.76,
+        autoAlpha: 0,
+        force3D: true,
+      });
 
       gsap.set(horse, {
         x: "-10vw",
@@ -75,119 +75,35 @@ export default function BuiltForRiders() {
         force3D: true,
       });
 
-      gsap.set(bike, {
-        x: "-30vw",
-        y: "12vh",
-        scale: 0.76,
-        autoAlpha: 0,
-        force3D: true,
-      });
-
-      gsap.set(bikeFloat, {
-        y: 0,
-        rotation: 0,
-        force3D: true,
-      });
-
       gsap.set(eyebrow, {
-        y: 26,
+        y: 24,
         autoAlpha: 0,
       });
 
-      gsap.set(built, {
-        x: "30vw",
-        y: 26,
-        autoAlpha: 0,
-        force3D: true,
-      });
-
-      gsap.set(forWord, {
-        x: "34vw",
-        y: 26,
-        autoAlpha: 0,
-        force3D: true,
-      });
-
-      gsap.set(riders, {
-        x: "38vw",
-        y: 26,
+      gsap.set([built, forWord, riders], {
+        x: "12vw",
         autoAlpha: 0,
         force3D: true,
       });
 
       gsap.set(stats, {
-        y: 34,
+        y: 35,
         autoAlpha: 0,
       });
 
-      hp.textContent = "0";
-      weight.textContent = "0";
-      rpm.textContent = "0K+";
-
-      const hpCounter = { value: 0 };
-      const weightCounter = { value: 0 };
-      const rpmCounter = { value: 0 };
-
-      /*
-       * =====================================================
-       * BIKE FLOAT
-       * =====================================================
-       */
-
-      const floatTween = gsap.to(bikeFloat, {
-        y: -14,
-        rotation: -0.55,
-        duration: 2.4,
-        ease: "sine.inOut",
-        repeat: -1,
-        yoyo: true,
-        paused: true,
-        force3D: true,
-      });
-
-      /*
-       * =====================================================
-       * MASTER TIMELINE
-       * =====================================================
-       */
+      statOne.textContent = "0";
+      statTwo.textContent = "0";
+      statThree.textContent = "0";
 
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
           end: "bottom bottom",
-
-          /*
-           * More smoothing.
-           */
           scrub: 2.2,
-
           invalidateOnRefresh: true,
-
-          onUpdate: (self) => {
-            if (self.progress > 0.42) {
-              if (floatTween.paused()) {
-                floatTween.play();
-              }
-            } else {
-              if (!floatTween.paused()) {
-                floatTween.pause();
-              }
-
-              gsap.set(bikeFloat, {
-                y: 0,
-                rotation: 0,
-              });
-            }
-          },
         },
       });
-
-      /*
-       * =====================================================
-       * OPENING HOLD
-       * =====================================================
-       */
 
       timeline.to(
         {},
@@ -196,216 +112,117 @@ export default function BuiltForRiders() {
         },
       );
 
-      /*
-       * =====================================================
-       * BIKE ARRIVES SLOWLY
-       * =====================================================
-       */
-
       timeline.to(
         bike,
         {
           x: 0,
           y: 0,
-
           scale: 1,
-
           autoAlpha: 1,
-
           duration: 1.55,
-
-          ease: "power2.out",
-
+          ease: "power3.out",
           force3D: true,
         },
         0.18,
       );
 
-      /*
-       * Short hold after bike settles.
-       */
-      timeline.to(
-        {},
-        {
-          duration: 0.28,
-        },
-      );
-
-      /*
-       * =====================================================
-       * HORSE SHADOW ARRIVES
-       * =====================================================
-       */
-
       timeline.to(
         horse,
         {
           x: 0,
           y: 0,
-
           scale: 1,
-
           autoAlpha: 1,
-
           duration: 1.05,
-
-          ease: "power2.out",
-
+          ease: "power3.out",
           force3D: true,
         },
         1.48,
       );
 
-      /*
-       * =====================================================
-       * EYEBROW
-       * =====================================================
-       */
-
       timeline.to(
         eyebrow,
         {
           y: 0,
-
           autoAlpha: 1,
-
           duration: 0.62,
-
           ease: "power2.out",
         },
         1.85,
       );
 
-      /*
-       * =====================================================
-       * BUILT
-       * =====================================================
-       */
-
       timeline.to(
         built,
         {
           x: 0,
-          y: 0,
-
           autoAlpha: 1,
-
-          duration: 0.92,
-
+          duration: 0.72,
           ease: "power3.out",
-
           force3D: true,
         },
         2.05,
       );
 
-      /*
-       * =====================================================
-       * FOR
-       * =====================================================
-       */
-
       timeline.to(
         forWord,
         {
           x: 0,
-          y: 0,
-
           autoAlpha: 1,
-
-          duration: 0.92,
-
+          duration: 0.72,
           ease: "power3.out",
-
           force3D: true,
         },
         2.48,
       );
 
-      /*
-       * =====================================================
-       * RIDERS
-       * =====================================================
-       */
-
       timeline.to(
         riders,
         {
           x: 0,
-          y: 0,
-
           autoAlpha: 1,
-
-          duration: 0.95,
-
+          duration: 0.72,
           ease: "power3.out",
-
           force3D: true,
         },
         2.92,
       );
 
-      /*
-       * =====================================================
-       * HORSE PARALLAX
-       * =====================================================
-       */
-
       timeline.to(
         horse,
         {
-          x: "2vw",
+          x: "3vw",
           y: "-1vh",
-
-          scale: 1.045,
-
-          duration: 1.4,
-
-          ease: "sine.inOut",
-
+          duration: 1.3,
+          ease: "none",
           force3D: true,
         },
         2.55,
       );
 
-      /*
-       * =====================================================
-       * STATS APPEAR
-       * =====================================================
-       */
-
       timeline.to(
         stats,
         {
           y: 0,
-
           autoAlpha: 1,
-
-          duration: 0.72,
-
+          duration: 0.7,
           ease: "power2.out",
         },
         3.5,
       );
 
-      /*
-       * =====================================================
-       * COUNTERS
-       * =====================================================
-       */
+      const statOneObject = { value: 0 };
+      const statTwoObject = { value: 0 };
+      const statThreeObject = { value: 0 };
 
       timeline.to(
-        hpCounter,
+        statOneObject,
         {
-          value: 208,
-
+          value: 120,
           duration: 1.25,
-
-          ease: "power1.out",
-
+          ease: "power2.out",
           onUpdate: () => {
-            hp.textContent = Math.round(
-              hpCounter.value,
+            statOne.textContent = Math.round(
+              statOneObject.value,
             ).toString();
           },
         },
@@ -413,17 +230,14 @@ export default function BuiltForRiders() {
       );
 
       timeline.to(
-        weightCounter,
+        statTwoObject,
         {
-          value: 200,
-
+          value: 46,
           duration: 1.25,
-
-          ease: "power1.out",
-
+          ease: "power2.out",
           onUpdate: () => {
-            weight.textContent = Math.round(
-              weightCounter.value,
+            statTwo.textContent = Math.round(
+              statTwoObject.value,
             ).toString();
           },
         },
@@ -431,81 +245,51 @@ export default function BuiltForRiders() {
       );
 
       timeline.to(
-        rpmCounter,
+        statThreeObject,
         {
-          value: 14,
-
+          value: 18,
           duration: 1.25,
-
-          ease: "power1.out",
-
+          ease: "power2.out",
           onUpdate: () => {
-            rpm.textContent =
-              `${Math.round(rpmCounter.value)}K+`;
+            statThree.textContent = Math.round(
+              statThreeObject.value,
+            ).toString();
           },
         },
         3.96,
       );
 
-      /*
-       * =====================================================
-       * SUBTLE FINAL BIKE PUSH
-       * =====================================================
-       */
-
       timeline.to(
         bike,
         {
-          scale: 1.025,
-          x: "0.5vw",
-
-          duration: 1.15,
-
+          scale: 1.035,
+          duration: 1.1,
           ease: "sine.inOut",
-
           force3D: true,
         },
         4.15,
       );
-
-      /*
-       * =====================================================
-       * SUBTLE HORSE FINAL PUSH
-       * =====================================================
-       */
 
       timeline.to(
         horse,
         {
-          x: "3vw",
-
-          scale: 1.065,
-
-          duration: 1.15,
-
+          scale: 1.03,
+          duration: 1.1,
           ease: "sine.inOut",
-
           force3D: true,
         },
         4.15,
       );
 
       /*
-       * =====================================================
-       * FINAL HOLD
-       * =====================================================
+       * Full completed visual hold
        */
-
       timeline.to(
         {},
         {
           duration: 1.25,
         },
       );
-
-      return () => {
-        floatTween.kill();
-      };
     }, section);
 
     return () => {
@@ -518,140 +302,129 @@ export default function BuiltForRiders() {
       ref={sectionRef}
       className="builtRiders"
       id="riders"
-      aria-label="Built for Riders"
+      aria-label="Built For Riders"
     >
       <div className="builtRiders__sticky">
 
-        {/* BACKGROUND */}
         <div
           className="builtRiders__background"
           aria-hidden="true"
-        >
-          <div className="builtRiders__shape builtRiders__shape--one" />
+        />
 
-          <div className="builtRiders__shape builtRiders__shape--two" />
-
-          <div className="builtRiders__shape builtRiders__shape--three" />
-        </div>
-
-        {/* HORSE SHADOW */}
         <div
           ref={horseRef}
           className="builtRiders__horse"
           aria-hidden="true"
         >
           <Image
-            src="/images/horse/vantor-dark-horse.png"
+            src={asset(
+              "/images/horse/vantor-dark-horse.png",
+            )}
             alt=""
             fill
             unoptimized
-            sizes="(max-width: 768px) 156vw, 82vw"
+            sizes="82vw"
             className="builtRiders__horseImage"
           />
         </div>
 
-        {/* BIKE */}
         <div
           ref={bikeRef}
           className="builtRiders__bike"
         >
-          <div
-            ref={bikeFloatRef}
-            className="builtRiders__bikeFloat"
-          >
+          <div className="builtRiders__bikeFloat">
             <Image
-              src="/images/bike/vantor-bike-angle-03.png"
+              src={asset(
+                "/images/bike/vantor-bike-angle-03.png",
+              )}
               alt="Vantor motorcycle"
               fill
               priority
               unoptimized
-              sizes="(max-width: 768px) 95vw, 70vw"
+              sizes="(max-width: 768px) 90vw, 64vw"
               className="builtRiders__bikeImage"
             />
           </div>
         </div>
 
-        {/* CONTENT */}
         <div className="builtRiders__content">
 
           <div
             ref={eyebrowRef}
             className="builtRiders__eyebrow"
           >
-            OPERATING ON LIMITS
+            BUILT FOR THE ONES WHO PUSH FURTHER
           </div>
 
           <div className="builtRiders__headline">
-
             <div
               ref={builtRef}
-              className="builtRiders__headlineLine"
+              className="builtRiders__word"
             >
               BUILT
             </div>
 
             <div
               ref={forRef}
-              className="builtRiders__headlineLine"
+              className="builtRiders__word builtRiders__word--for"
             >
               FOR
             </div>
 
             <div
               ref={ridersRef}
-              className="builtRiders__headlineLine"
+              className="builtRiders__word"
             >
               RIDERS
             </div>
-
           </div>
 
-          {/* STATS */}
           <div
             ref={statsRef}
             className="builtRiders__stats"
           >
             <div className="builtRiders__stat">
-              <span
-                ref={hpRef}
-                className="builtRiders__statValue"
-              >
-                0
-              </span>
+              <div className="builtRiders__statValue">
+                <span ref={statOneRef}>0</span>
+                <span className="builtRiders__statSuffix">
+                  +
+                </span>
+              </div>
 
-              <span className="builtRiders__statLabel">
-                HP POWER
-              </span>
+              <div className="builtRiders__statLabel">
+                PERFORMANCE PARTS
+              </div>
             </div>
 
             <div className="builtRiders__stat">
-              <span
-                ref={weightRef}
-                className="builtRiders__statValue"
-              >
-                0
-              </span>
+              <div className="builtRiders__statValue">
+                <span ref={statTwoRef}>0</span>
+                <span className="builtRiders__statSuffix">
+                  +
+                </span>
+              </div>
 
-              <span className="builtRiders__statLabel">
-                KG WEIGHT
-              </span>
+              <div className="builtRiders__statLabel">
+                RACE PROVEN BUILDS
+              </div>
             </div>
 
             <div className="builtRiders__stat">
-              <span
-                ref={rpmRef}
-                className="builtRiders__statValue"
-              >
-                0K+
-              </span>
+              <div className="builtRiders__statValue">
+                <span ref={statThreeRef}>0</span>
+                <span className="builtRiders__statSuffix">
+                  K
+                </span>
+              </div>
 
-              <span className="builtRiders__statLabel">
-                RPM
-              </span>
+              <div className="builtRiders__statLabel">
+                RIDERS WORLDWIDE
+              </div>
             </div>
           </div>
 
         </div>
+
       </div>
     </section>
   );

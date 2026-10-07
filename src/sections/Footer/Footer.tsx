@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import { asset } from "@/lib/asset";
 import "./footer.css";
 
 export default function Footer() {
@@ -60,10 +61,6 @@ export default function Footer() {
     }
 
     const ctx = gsap.context(() => {
-      /*
-       * INITIAL STATES
-       */
-
       gsap.set(lines, {
         scaleX: 0,
         transformOrigin: "left center",
@@ -121,10 +118,6 @@ export default function Footer() {
         autoAlpha: 0,
       });
 
-      /*
-       * MASTER TIMELINE
-       */
-
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: section,
@@ -135,16 +128,7 @@ export default function Footer() {
         },
       });
 
-      timeline.to(
-        {},
-        {
-          duration: 0.18,
-        },
-      );
-
-      /*
-       * RED LINES
-       */
+      timeline.to({}, { duration: 0.18 });
 
       timeline.to(
         lines,
@@ -155,10 +139,6 @@ export default function Footer() {
         },
         0.18,
       );
-
-      /*
-       * BACKGROUND V
-       */
 
       timeline.to(
         giantV,
@@ -173,10 +153,6 @@ export default function Footer() {
         0.3,
       );
 
-      /*
-       * LOGO
-       */
-
       timeline.to(
         logo,
         {
@@ -189,10 +165,6 @@ export default function Footer() {
         0.5,
       );
 
-      /*
-       * EYEBROW
-       */
-
       timeline.to(
         eyebrow,
         {
@@ -203,10 +175,6 @@ export default function Footer() {
         },
         0.68,
       );
-
-      /*
-       * BIG VANTOR
-       */
 
       timeline.to(
         brand,
@@ -221,10 +189,6 @@ export default function Footer() {
         0.85,
       );
 
-      /*
-       * STATEMENT
-       */
-
       timeline.to(
         statement,
         {
@@ -235,10 +199,6 @@ export default function Footer() {
         },
         1.18,
       );
-
-      /*
-       * FOOTER COLUMNS
-       */
 
       timeline.to(
         left,
@@ -275,10 +235,6 @@ export default function Footer() {
         1.74,
       );
 
-      /*
-       * BOTTOM LINE
-       */
-
       timeline.to(
         bottom,
         {
@@ -289,10 +245,6 @@ export default function Footer() {
         },
         1.96,
       );
-
-      /*
-       * FINAL CINEMATIC PUSH
-       */
 
       timeline.to(
         brand,
@@ -316,16 +268,7 @@ export default function Footer() {
         2.15,
       );
 
-      /*
-       * FINAL HOLD
-       */
-
-      timeline.to(
-        {},
-        {
-          duration: 1.2,
-        },
-      );
+      timeline.to({}, { duration: 1.2 });
     }, section);
 
     return () => {
@@ -341,8 +284,6 @@ export default function Footer() {
     >
       <div className="vantorFooter__sticky">
 
-        {/* BACKGROUND */}
-
         <div
           className="vantorFooter__background"
           aria-hidden="true"
@@ -357,8 +298,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* RACING LINES */}
-
         <div
           ref={linesRef}
           className="vantorFooter__lines"
@@ -369,8 +308,6 @@ export default function Footer() {
           <span />
         </div>
 
-        {/* TOP AREA */}
-
         <div className="vantorFooter__hero">
 
           <div
@@ -378,7 +315,7 @@ export default function Footer() {
             className="vantorFooter__logo"
           >
             <Image
-              src="/images/vantor-logo.png"
+              src={asset("/images/vantor-logo.png")}
               alt="Vantor"
               fill
               unoptimized
@@ -410,11 +347,7 @@ export default function Footer() {
 
         </div>
 
-        {/* FOOTER CONTENT */}
-
         <div className="vantorFooter__content">
-
-          {/* LEFT */}
 
           <div
             ref={leftRef}
@@ -443,8 +376,6 @@ export default function Footer() {
             </nav>
           </div>
 
-          {/* CENTER */}
-
           <div
             ref={centerRef}
             className="vantorFooter__column vantorFooter__column--center"
@@ -461,8 +392,6 @@ export default function Footer() {
               LIMITS
             </div>
           </div>
-
-          {/* RIGHT */}
 
           <div
             ref={rightRef}
@@ -495,8 +424,6 @@ export default function Footer() {
           </div>
 
         </div>
-
-        {/* BOTTOM */}
 
         <div
           ref={bottomRef}

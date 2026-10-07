@@ -3,24 +3,33 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { gsap } from "@/lib/gsap";
+import { asset } from "@/lib/asset";
 import "./next-gear.css";
 
 export default function NextGear() {
   const sectionRef = useRef<HTMLElement | null>(null);
 
   const circleRef = useRef<HTMLDivElement | null>(null);
+
   const bikeRef = useRef<HTMLDivElement | null>(null);
+
   const nextRef = useRef<HTMLDivElement | null>(null);
   const gearRef = useRef<HTMLDivElement | null>(null);
-  const shadowRef = useRef<HTMLDivElement | null>(null);
+
+  const accentLeftRef = useRef<HTMLDivElement | null>(null);
+  const accentRightRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const section = sectionRef.current;
+
     const circle = circleRef.current;
     const bike = bikeRef.current;
+
     const next = nextRef.current;
     const gear = gearRef.current;
-    const shadow = shadowRef.current;
+
+    const accentLeft = accentLeftRef.current;
+    const accentRight = accentRightRef.current;
 
     if (
       !section ||
@@ -28,112 +37,76 @@ export default function NextGear() {
       !bike ||
       !next ||
       !gear ||
-      !shadow
+      !accentLeft ||
+      !accentRight
     ) {
       return;
     }
 
     const ctx = gsap.context(() => {
-      /*
-       * =====================================================
-       * INITIAL STATE
-       * =====================================================
-       */
-
       gsap.set(circle, {
-        scale: 0.04,
-        autoAlpha: 1,
+        scale: 0.08,
+        autoAlpha: 0,
         force3D: true,
-        transformOrigin: "50% 50%",
       });
 
       gsap.set(bike, {
-        scale: 0.055,
-        y: "-1.5vh",
-        autoAlpha: 0.08,
+        scale: 0.16,
+        y: "20vh",
+        autoAlpha: 0,
         force3D: true,
-        transformOrigin: "50% 50%",
       });
 
       gsap.set(next, {
-        x: "-110vw",
+        x: "-24vw",
         autoAlpha: 0,
         force3D: true,
       });
 
       gsap.set(gear, {
-        x: "110vw",
+        x: "24vw",
         autoAlpha: 0,
         force3D: true,
       });
 
-      gsap.set(shadow, {
-        scaleX: 0.08,
-        scaleY: 0.35,
+      gsap.set(accentLeft, {
+        x: "-15vw",
         autoAlpha: 0,
-        force3D: true,
       });
 
-      /*
-       * =====================================================
-       * MASTER SCROLL TIMELINE
-       * =====================================================
-       */
+      gsap.set(accentRight, {
+        x: "15vw",
+        autoAlpha: 0,
+      });
 
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: section,
           start: "top top",
           end: "bottom bottom",
-
-          /*
-           * Lower scrub = follows the scroll more naturally.
-           * Still smooth, but not laggy.
-           */
-          scrub: 1.15,
-
+          scrub: 2.2,
           invalidateOnRefresh: true,
         },
       });
 
-      /*
-       * Slight dark hold.
-       */
       timeline.to(
         {},
         {
-          duration: 0.08,
+          duration: 0.2,
         },
       );
-
-      /*
-       * =====================================================
-       * CIRCLE
-       *
-       * ONE continuous movement.
-       * No intermediate scale stops.
-       * =====================================================
-       */
 
       timeline.to(
         circle,
         {
-          scale: 7.8,
-          duration: 1.55,
-          ease: "power1.inOut",
+          scale: 1,
+          autoAlpha: 1,
+          duration: 1.35,
+          ease: "power3.out",
           force3D: true,
         },
-        0.08,
+        0.2,
       );
-
-      /*
-       * =====================================================
-       * BIKE
-       *
-       * ONE continuous approach.
-       * Feels like the bike is coming from far away.
-       * =====================================================
-       */
 
       timeline.to(
         bike,
@@ -141,29 +114,23 @@ export default function NextGear() {
           scale: 1,
           y: 0,
           autoAlpha: 1,
-          duration: 1.5,
-          ease: "power1.inOut",
+          duration: 1.3,
+          ease: "power3.out",
           force3D: true,
         },
-        0.18,
+        0.48,
       );
-
-      /*
-       * =====================================================
-       * TEXT
-       * =====================================================
-       */
 
       timeline.to(
         next,
         {
           x: 0,
           autoAlpha: 1,
-          duration: 0.68,
+          duration: 0.95,
           ease: "power3.out",
           force3D: true,
         },
-        0.72,
+        0.82,
       );
 
       timeline.to(
@@ -171,39 +138,64 @@ export default function NextGear() {
         {
           x: 0,
           autoAlpha: 1,
-          duration: 0.68,
+          duration: 0.95,
           ease: "power3.out",
           force3D: true,
         },
-        0.8,
+        0.95,
       );
-
-      /*
-       * =====================================================
-       * SHADOW
-       * =====================================================
-       */
 
       timeline.to(
-        shadow,
+        accentLeft,
         {
-          scaleX: 1,
-          scaleY: 1,
-          autoAlpha: 0.8,
-          duration: 0.75,
-          ease: "power2.out",
+          x: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        1.1,
+      );
+
+      timeline.to(
+        accentRight,
+        {
+          x: 0,
+          autoAlpha: 1,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        1.18,
+      );
+
+      timeline.to(
+        bike,
+        {
+          scale: 1.045,
+          duration: 1.15,
+          ease: "sine.inOut",
           force3D: true,
         },
-        0.88,
+        1.7,
+      );
+
+      timeline.to(
+        circle,
+        {
+          scale: 1.05,
+          duration: 1.15,
+          ease: "sine.inOut",
+          force3D: true,
+        },
+        1.7,
       );
 
       /*
-       * Final hold.
+       * Full composition hold
        */
       timeline.to(
         {},
         {
-          duration: 0.72,
+          duration: 1.15,
         },
       );
     }, section);
@@ -223,32 +215,42 @@ export default function NextGear() {
       <div className="nextGear__sticky">
 
         <div
-          className="nextGear__darkBackground"
+          className="nextGear__background"
           aria-hidden="true"
         />
 
         <div
-          className="nextGear__circleWrap"
+          ref={circleRef}
+          className="nextGear__circle"
           aria-hidden="true"
-        >
+        />
+
+        <div
+          ref={accentLeftRef}
+          className="nextGear__speedAccent nextGear__speedAccent--left"
+          aria-hidden="true"
+        />
+
+        <div
+          ref={accentRightRef}
+          className="nextGear__speedAccent nextGear__speedAccent--right"
+          aria-hidden="true"
+        />
+
+        <div className="nextGear__wordStage">
           <div
-            ref={circleRef}
-            className="nextGear__circle"
-          />
-        </div>
+            ref={nextRef}
+            className="nextGear__word nextGear__word--next"
+          >
+            NEXT
+          </div>
 
-        <div
-          ref={nextRef}
-          className="nextGear__word nextGear__word--next"
-        >
-          NEXT
-        </div>
-
-        <div
-          ref={gearRef}
-          className="nextGear__word nextGear__word--gear"
-        >
-          GEAR
+          <div
+            ref={gearRef}
+            className="nextGear__word nextGear__word--gear"
+          >
+            GEAR
+          </div>
         </div>
 
         <div
@@ -256,19 +258,20 @@ export default function NextGear() {
           className="nextGear__bike"
         >
           <Image
-            src="/images/bike/vantor-bike-front.png"
+            src={asset(
+              "/images/bike/vantor-bike-front.png",
+            )}
             alt="Vantor motorcycle front view"
             fill
             priority
             unoptimized
-            sizes="(max-width: 768px) 92vw, 55vw"
+            sizes="(max-width: 768px) 84vw, 42vw"
             className="nextGear__bikeImage"
           />
         </div>
 
         <div
-          ref={shadowRef}
-          className="nextGear__shadow"
+          className="nextGear__ground"
           aria-hidden="true"
         />
 
