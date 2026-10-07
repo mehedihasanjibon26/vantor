@@ -22,12 +22,17 @@ export default function Preloader() {
 
   useEffect(() => {
     const section = sectionRef.current;
+
     const logo = logoRef.current;
+
     const bikeStage = bikeStageRef.current;
     const bike = bikeMotionRef.current;
+
     const nav = navRef.current;
+
     const ride = rideRef.current;
     const die = dieRef.current;
+
     const darkType = darkTypeRef.current;
 
     const panels = panelsRef.current.filter(Boolean);
@@ -47,6 +52,12 @@ export default function Preloader() {
     }
 
     const ctx = gsap.context(() => {
+      /*
+       * =====================================================
+       * INITIAL STATES
+       * =====================================================
+       */
+
       gsap.set(logo, {
         autoAlpha: 1,
         scale: 1,
@@ -56,44 +67,56 @@ export default function Preloader() {
         yPercent: 0,
       });
 
-      const getBikeStartX = () => {
-        const viewportWidth = window.innerWidth;
-        const bikeWidth = bikeStage.offsetWidth;
-        const stageLeft = (viewportWidth - bikeWidth) / 2;
-        const desiredInitialLeft = -(bikeWidth * 0.76);
-
-        return desiredInitialLeft - stageLeft;
-      };
-
+      /*
+       * Bike starts outside left.
+       */
       gsap.set(bike, {
-        x: getBikeStartX(),
-        y: 0,
-        scale: 1,
-        rotation: 0,
+        x: "-108vw",
+        y: "-5.5vh",
+        scale: 0.96,
+        rotation: -4,
         autoAlpha: 1,
       });
 
+      /*
+       * Navbar hidden initially.
+       */
       gsap.set(nav, {
         y: -34,
         autoAlpha: 0,
       });
 
+      /*
+       * RIDE hidden.
+       */
       gsap.set(ride, {
         x: -100,
         y: 20,
         autoAlpha: 0,
       });
 
+      /*
+       * DIE hidden.
+       */
       gsap.set(die, {
         x: 100,
         y: 20,
         autoAlpha: 0,
       });
 
+      /*
+       * Dark TOR begins below viewport.
+       */
       gsap.set(darkType, {
         y: "105vh",
         autoAlpha: 1,
       });
+
+      /*
+       * =====================================================
+       * MASTER HERO TIMELINE
+       * =====================================================
+       */
 
       const timeline = gsap.timeline({
         scrollTrigger: {
@@ -105,6 +128,9 @@ export default function Preloader() {
         },
       });
 
+      /*
+       * Initial intro hold.
+       */
       timeline.to(
         {},
         {
@@ -112,6 +138,9 @@ export default function Preloader() {
         },
       );
 
+      /*
+       * Logo fade.
+       */
       timeline.to(
         logo,
         {
@@ -123,15 +152,11 @@ export default function Preloader() {
         0.14,
       );
 
-      timeline.to(
-        bike,
-        {
-          x: 0,
-          duration: 0.82,
-          ease: "power2.out",
-        },
-        0.22,
-      );
+      /*
+       * =====================================================
+       * SIX PANEL REVEAL
+       * =====================================================
+       */
 
       timeline.to(
         panels[0],
@@ -193,56 +218,133 @@ export default function Preloader() {
         0.55,
       );
 
+      /*
+       * =====================================================
+       * BIKE ARRIVAL
+       * =====================================================
+       */
+
       timeline.to(
-        nav,
+        bike,
         {
+          x: 0,
           y: 0,
-          autoAlpha: 1,
-          duration: 0.42,
-          ease: "power3.out",
+          scale: 1,
+          rotation: 0,
+
+          duration: 1.15,
+
+          ease: "power2.out",
         },
-        0.55,
+        0.52,
       );
 
       /*
-       * Giant dark TOR rises from outside
-       * bottom-right of the hero.
+       * =====================================================
+       * DARK TOR
+       * =====================================================
        */
+
       timeline.to(
         darkType,
         {
           y: "-8vh",
+
           duration: 0.78,
+
           ease: "power2.out",
         },
         0.76,
       );
 
       /*
-       * White words appear later.
+       * =====================================================
+       * RIDE
+       * =====================================================
        */
+
       timeline.to(
         ride,
         {
           x: 0,
           y: 0,
+
           autoAlpha: 1,
+
           duration: 0.42,
+
           ease: "power3.out",
         },
         1.02,
       );
+
+      /*
+       * =====================================================
+       * DIE
+       * =====================================================
+       */
 
       timeline.to(
         die,
         {
           x: 0,
           y: 0,
+
           autoAlpha: 1,
+
           duration: 0.42,
+
           ease: "power3.out",
         },
-        1.20,
+        1.2,
+      );
+
+      /*
+       * =====================================================
+       * NAVBAR
+       * Arrives together with DIE
+       * =====================================================
+       */
+
+      timeline.to(
+        nav,
+        {
+          y: 0,
+
+          autoAlpha: 1,
+
+          duration: 0.42,
+
+          ease: "power3.out",
+        },
+        1.2,
+      );
+
+      /*
+       * =====================================================
+       * IMPORTANT HERO HOLD
+       * =====================================================
+       *
+       * Everything is now fully visible:
+       *
+       * - bike settled
+       * - RIDE visible
+       * - DIE visible
+       * - navbar visible
+       * - TOR settled
+       *
+       * We intentionally hold this frame before
+       * the next overlapping section starts covering it.
+       *
+       * This fixes the issue where NextGear was arriving
+       * before the Hero composition had fully completed.
+       */
+
+      timeline.to(
+        {},
+        {
+          duration: 1.05,
+        },
       );
     }, section);
 
@@ -260,15 +362,27 @@ export default function Preloader() {
       aria-label="Vantor intro and hero"
     >
       <div className="preloader__sticky">
+
+        {/* ===================================================
+            HERO
+        =================================================== */}
+
         <div className="preloader__hero">
+
           <div
             className="preloader__heroBackground"
             aria-hidden="true"
           >
             <div className="preloader__heroShape preloader__heroShape--left" />
+
             <div className="preloader__heroShape preloader__heroShape--center" />
+
             <div className="preloader__heroShape preloader__heroShape--right" />
           </div>
+
+          {/* =================================================
+              NAVBAR
+          ================================================= */}
 
           <div
             ref={navRef}
@@ -276,6 +390,10 @@ export default function Preloader() {
           >
             <Navigation />
           </div>
+
+          {/* =================================================
+              DARK TOR
+          ================================================= */}
 
           <div
             ref={darkTypeRef}
@@ -292,6 +410,10 @@ export default function Preloader() {
             ))}
           </div>
 
+          {/* =================================================
+              RIDE
+          ================================================= */}
+
           <div
             ref={rideRef}
             className="preloader__heroWord preloader__heroWord--ride"
@@ -299,12 +421,20 @@ export default function Preloader() {
             RIDE
           </div>
 
+          {/* =================================================
+              DIE
+          ================================================= */}
+
           <div
             ref={dieRef}
             className="preloader__heroWord preloader__heroWord--die"
           >
             DIE
           </div>
+
+          {/* =================================================
+              BIKE
+          ================================================= */}
 
           <div
             ref={bikeStageRef}
@@ -315,8 +445,8 @@ export default function Preloader() {
               className="preloader__bikeMotion"
             >
               <Image
-                src="/images/bike/vantor-naked-bike.png"
-                alt="Vantor naked motorcycle"
+                src="/images/bike/vantor-bike-angle-03.png"
+                alt="Vantor motorcycle"
                 fill
                 priority
                 unoptimized
@@ -325,6 +455,10 @@ export default function Preloader() {
               />
             </div>
           </div>
+
+          {/* =================================================
+              BIKE SHADOW
+          ================================================= */}
 
           <div
             className="preloader__roadShadow"
@@ -336,6 +470,10 @@ export default function Preloader() {
             aria-hidden="true"
           />
         </div>
+
+        {/* ===================================================
+            DARK INTRO PANELS
+        =================================================== */}
 
         <div
           className="preloader__panels"
@@ -353,6 +491,10 @@ export default function Preloader() {
             />
           ))}
         </div>
+
+        {/* ===================================================
+            INTRO LOGO
+        =================================================== */}
 
         <div
           ref={logoRef}
@@ -373,6 +515,7 @@ export default function Preloader() {
             VANTOR
           </div>
         </div>
+
       </div>
     </section>
   );

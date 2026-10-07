@@ -1,7 +1,11 @@
 .preloader {
   position: relative;
+
+  z-index: 1;
+
   width: 100%;
   height: 340vh;
+
   background: #050505;
 }
 
@@ -78,12 +82,14 @@
 .preloader__heroShape--center {
   left: 46%;
   width: 18%;
+
   opacity: 0.7;
 }
 
 .preloader__heroShape--right {
   right: 4%;
   width: 25%;
+
   opacity: 0.65;
 }
 
@@ -93,6 +99,7 @@
 
 .preloader__nav {
   position: absolute;
+
   inset: 0 0 auto 0;
 
   z-index: 30;
@@ -123,6 +130,7 @@
 
   display: flex;
   flex-direction: column;
+
   align-items: flex-end;
   justify-content: flex-start;
 
@@ -218,11 +226,6 @@
     0 8px 26px rgba(0, 0, 0, 0.07);
 }
 
-/* =========================================================
-   RIDE
-   readable big typography
-   ========================================================= */
-
 .preloader__heroWord--ride {
   top: 16%;
   left: 1.2%;
@@ -255,10 +258,6 @@
     0 10px 20px rgba(0, 0, 0, 0.05);
 }
 
-/* =========================================================
-   DIE
-   ========================================================= */
-
 .preloader__heroWord--die {
   right: 3.5%;
   bottom: 7%;
@@ -289,7 +288,7 @@
 
   z-index: 12;
 
-  width: min(50vw, 820px);
+  width: min(64vw, 1040px);
 
   aspect-ratio: 3 / 2;
 
@@ -316,6 +315,7 @@
   height: 100%;
 
   object-fit: contain;
+
   object-position: center bottom;
 
   filter:
@@ -395,7 +395,9 @@
   z-index: 50;
 
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+
+  grid-template-columns:
+    repeat(6, 1fr);
 
   width: 100%;
   height: 100%;
@@ -486,9 +488,11 @@
 
   gap: 14px;
 
-  transform: translate(-50%, -50%);
+  transform:
+    translate(-50%, -50%);
 
-  transform-origin: center center;
+  transform-origin:
+    center center;
 
   pointer-events: none;
 
@@ -512,6 +516,7 @@
   height: 100%;
 
   object-fit: contain;
+
   object-position: center;
 
   filter:
@@ -560,6 +565,7 @@
 
   .preloader__darkLetter {
     font-size: clamp(260px, 34vw, 480px);
+
     line-height: 0.72;
   }
 
@@ -576,22 +582,26 @@
 
   .preloader__heroWord--die {
     font-size: clamp(90px, 16vw, 220px);
+
     right: 3%;
     bottom: 10%;
   }
 
   .preloader__bikeStage {
     bottom: 7vh;
-    width: 62vw;
+
+    width: 76vw;
   }
 
   .preloader__roadShadow {
     bottom: 5.8vh;
+
     width: 55vw;
   }
 
   .preloader__contactShadow {
     bottom: 7.4vh;
+
     width: 40vw;
   }
 }
@@ -621,11 +631,13 @@
 
     gap: 10px;
 
-    transform: translate(-50%, -50%);
+    transform:
+      translate(-50%, -50%);
   }
 
   .preloader__logoBox {
-    width: clamp(145px, 40vw, 210px);
+    width:
+      clamp(145px, 40vw, 210px);
   }
 
   .preloader__wordmark {
@@ -641,6 +653,7 @@
 
   .preloader__darkLetter {
     font-size: 41vw;
+
     line-height: 0.74;
   }
 
@@ -648,7 +661,8 @@
     top: 21%;
     left: -1%;
 
-    font-size: clamp(100px, 24vw, 180px);
+    font-size:
+      clamp(100px, 24vw, 180px);
 
     line-height: 0.9;
 
@@ -656,7 +670,9 @@
   }
 
   .preloader__heroWord--die {
-    font-size: clamp(74px, 21vw, 130px);
+    font-size:
+      clamp(74px, 21vw, 130px);
+
     line-height: 0.8;
 
     right: 4%;
@@ -666,7 +682,7 @@
   .preloader__bikeStage {
     bottom: 10vh;
 
-    width: 86vw;
+    width: 96vw;
   }
 
   .preloader__roadShadow {

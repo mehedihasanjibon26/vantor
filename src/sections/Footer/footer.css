@@ -1,0 +1,812 @@
+.vantorFooter {
+  position: relative;
+
+  z-index: 6;
+
+  width: 100%;
+  height: 300vh;
+
+  margin-top: -100vh;
+
+  background: #030303;
+}
+
+.vantorFooter__sticky {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: #030303;
+
+  isolation: isolate;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.vantorFooter__background {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 43%,
+      rgba(225, 6, 0, 0.075) 0%,
+      rgba(225, 6, 0, 0.025) 28%,
+      rgba(225, 6, 0, 0) 56%
+    ),
+    linear-gradient(
+      180deg,
+      #080808 0%,
+      #030303 56%,
+      #070000 100%
+    );
+}
+
+.vantorFooter__glow {
+  position: absolute;
+
+  left: 50%;
+  bottom: -30vh;
+
+  width: 95vw;
+  height: 72vh;
+
+  transform: translateX(-50%);
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(225, 6, 0, 0.19) 0%,
+      rgba(150, 0, 0, 0.07) 36%,
+      transparent 70%
+    );
+
+  filter: blur(55px);
+
+  pointer-events: none;
+}
+
+/* =========================================================
+   GIANT BACKGROUND V
+   ========================================================= */
+
+.vantorFooter__giantV {
+  position: absolute;
+
+  left: 50%;
+  top: 47%;
+
+  z-index: 0;
+
+  color:
+    rgba(225, 6, 0, 0.052);
+
+  font-family:
+    Impact,
+    Haettenschweiler,
+    "Arial Black",
+    sans-serif;
+
+  font-size:
+    clamp(640px, 72vw, 1340px);
+
+  font-weight: 900;
+
+  font-style: italic;
+
+  line-height: 0.7;
+
+  letter-spacing: -0.04em;
+
+  transform:
+    translate(-50%, -50%)
+    scaleX(0.88);
+
+  transform-origin:
+    center center;
+
+  user-select: none;
+
+  pointer-events: none;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+/* =========================================================
+   RACING LINES
+   ========================================================= */
+
+.vantorFooter__lines {
+  position: absolute;
+
+  top: 0;
+  left: 3vw;
+  right: 3vw;
+
+  z-index: 30;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  padding-top: 4px;
+
+  transform-origin: left center;
+}
+
+.vantorFooter__lines span {
+  width: 100%;
+  height: 3px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0%,
+      #e10600 8%,
+      #ff1c12 48%,
+      #e10600 92%,
+      transparent 100%
+    );
+
+  box-shadow:
+    0 0 10px rgba(225, 6, 0, 0.3);
+}
+
+.vantorFooter__lines span:nth-child(2) {
+  opacity: 0.68;
+}
+
+.vantorFooter__lines span:nth-child(3) {
+  opacity: 0.36;
+}
+
+/* =========================================================
+   HERO AREA
+   ========================================================= */
+
+.vantorFooter__hero {
+  position: absolute;
+
+  top: 6vh;
+  left: 50%;
+
+  z-index: 10;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  width: 100%;
+
+  transform: translateX(-50%);
+
+  text-align: center;
+}
+
+/* =========================================================
+   LOGO
+   ========================================================= */
+
+.vantorFooter__logo {
+  position: relative;
+
+  width:
+    clamp(58px, 5vw, 92px);
+
+  aspect-ratio: 1 / 1;
+
+  margin-bottom: 9px;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.vantorFooter__logoImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  filter:
+    drop-shadow(
+      0 0 20px rgba(225, 6, 0, 0.18)
+    );
+}
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.vantorFooter__eyebrow {
+  color:
+    rgba(243, 239, 230, 0.46);
+
+  font-size:
+    clamp(8px, 0.62vw, 11px);
+
+  font-weight: 900;
+
+  line-height: 1;
+
+  letter-spacing: 0.3em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+/* =========================================================
+   PREMIUM VANTOR WORDMARK
+   ========================================================= */
+
+.vantorFooter__brand {
+  position: relative;
+
+  width: 100%;
+
+  margin-top:
+    clamp(18px, 2.8vh, 34px);
+
+  padding:
+    0 3vw;
+
+  color: #f2eee4;
+
+  font-family:
+    Impact,
+    Haettenschweiler,
+    "Arial Narrow Bold",
+    "Arial Black",
+    sans-serif;
+
+  font-size:
+    clamp(155px, 19vw, 385px);
+
+  font-weight: 900;
+
+  font-style: italic;
+
+  line-height: 0.84;
+
+  /*
+   * IMPORTANT:
+   * Positive spacing instead of negative spacing.
+   */
+  letter-spacing: 0.015em;
+
+  text-transform: uppercase;
+
+  text-align: center;
+
+  white-space: nowrap;
+
+  transform:
+    skewX(-6deg)
+    scaleX(0.92);
+
+  transform-origin:
+    center center;
+
+  text-shadow:
+    0 16px 45px rgba(0, 0, 0, 0.34);
+
+  backface-visibility: hidden;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+/*
+ * Very subtle premium edge/highlight.
+ */
+.vantorFooter__brand::after {
+  content: "";
+
+  position: absolute;
+
+  left: 11%;
+  right: 11%;
+  bottom: -15px;
+
+  height: 1px;
+
+  opacity: 0.32;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(243, 239, 230, 0.2),
+      rgba(225, 6, 0, 0.62),
+      rgba(243, 239, 230, 0.2),
+      transparent
+    );
+}
+
+/* =========================================================
+   STATEMENT
+   ========================================================= */
+
+.vantorFooter__statement {
+  margin-top:
+    clamp(30px, 4.2vh, 52px);
+
+  color:
+    rgba(243, 239, 230, 0.79);
+
+  font-size:
+    clamp(9px, 0.76vw, 13px);
+
+  font-weight: 900;
+
+  line-height: 1.4;
+
+  letter-spacing: 0.25em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+/* =========================================================
+   MAIN CONTENT
+   ========================================================= */
+
+.vantorFooter__content {
+  position: absolute;
+
+  left: var(--page-padding);
+  right: var(--page-padding);
+  bottom: 10vh;
+
+  z-index: 15;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr;
+
+  align-items: end;
+
+  gap:
+    clamp(30px, 5vw, 90px);
+}
+
+/* =========================================================
+   COLUMN
+   ========================================================= */
+
+.vantorFooter__column {
+  min-height: 170px;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.vantorFooter__column--center {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  text-align: center;
+}
+
+.vantorFooter__column--right {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-end;
+
+  text-align: right;
+}
+
+/* =========================================================
+   LABEL
+   ========================================================= */
+
+.vantorFooter__label {
+  display: block;
+
+  margin-bottom: 20px;
+
+  color:
+    rgba(243, 239, 230, 0.32);
+
+  font-size: 7px;
+
+  font-weight: 900;
+
+  line-height: 1;
+
+  letter-spacing: 0.22em;
+
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   NAV
+   ========================================================= */
+
+.vantorFooter__nav,
+.vantorFooter__social {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 10px;
+}
+
+.vantorFooter__social {
+  align-items: flex-end;
+}
+
+.vantorFooter__nav a,
+.vantorFooter__social a {
+  color:
+    rgba(243, 239, 230, 0.78);
+
+  font-size:
+    clamp(10px, 0.72vw, 13px);
+
+  font-weight: 800;
+
+  line-height: 1.15;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  transition:
+    color 220ms ease,
+    transform 220ms ease;
+}
+
+.vantorFooter__nav a:hover,
+.vantorFooter__social a:hover {
+  color: #e10600;
+}
+
+/* =========================================================
+   PREMIUM RED MOTTO
+   ========================================================= */
+
+.vantorFooter__motto {
+  display: block;
+
+  width: max-content;
+
+  margin: 0 auto;
+
+  color: #e10600;
+
+  font-family:
+    Impact,
+    Haettenschweiler,
+    "Arial Narrow Bold",
+    "Arial Black",
+    sans-serif;
+
+  font-size:
+    clamp(30px, 2.65vw, 52px);
+
+  font-weight: 900;
+
+  font-style: italic;
+
+  /*
+   * Main fix:
+   * lines no longer touch each other.
+   */
+  line-height: 1.02;
+
+  letter-spacing: 0.035em;
+
+  text-transform: uppercase;
+
+  text-align: center;
+
+  transform:
+    skewX(-7deg)
+    scaleX(0.92);
+
+  transform-origin: center;
+
+  text-shadow:
+    0 7px 18px rgba(0, 0, 0, 0.4),
+    0 0 22px rgba(225, 6, 0, 0.08);
+}
+
+/* =========================================================
+   EMAIL
+   ========================================================= */
+
+.vantorFooter__mail {
+  display: inline-block;
+
+  margin-top: 25px;
+
+  padding-bottom: 6px;
+
+  color: #e10600;
+
+  font-size:
+    clamp(10px, 0.72vw, 13px);
+
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+
+  border-bottom:
+    1px solid rgba(225, 6, 0, 0.45);
+}
+
+/* =========================================================
+   BOTTOM
+   ========================================================= */
+
+.vantorFooter__bottom {
+  position: absolute;
+
+  left: var(--page-padding);
+  right: var(--page-padding);
+  bottom: 2.7vh;
+
+  z-index: 20;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    auto
+    1fr;
+
+  align-items: center;
+
+  gap: 30px;
+
+  padding-top: 14px;
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  color:
+    rgba(243, 239, 230, 0.28);
+
+  font-size: 7px;
+
+  font-weight: 900;
+
+  line-height: 1;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.vantorFooter__bottom > span:nth-child(2) {
+  color:
+    rgba(243, 239, 230, 0.5);
+}
+
+.vantorFooter__bottomLinks {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 20px;
+}
+
+.vantorFooter__bottomLinks a {
+  color: inherit;
+
+  transition:
+    color 200ms ease;
+}
+
+.vantorFooter__bottomLinks a:hover {
+  color: #e10600;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .vantorFooter__hero {
+    top: 7vh;
+  }
+
+  .vantorFooter__brand {
+    font-size:
+      clamp(125px, 18vw, 265px);
+
+    letter-spacing: 0.018em;
+
+    transform:
+      skewX(-6deg)
+      scaleX(0.9);
+  }
+
+  .vantorFooter__statement {
+    margin-top: 34px;
+  }
+
+  .vantorFooter__content {
+    bottom: 11vh;
+  }
+
+  .vantorFooter__motto {
+    font-size:
+      clamp(27px, 3vw, 42px);
+
+    line-height: 1.04;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .vantorFooter {
+    height: 280vh;
+
+    margin-top: -100vh;
+  }
+
+  .vantorFooter__lines {
+    left: 10px;
+    right: 10px;
+
+    gap: 3px;
+  }
+
+  .vantorFooter__lines span {
+    height: 2px;
+  }
+
+  .vantorFooter__hero {
+    top: 6vh;
+  }
+
+  .vantorFooter__logo {
+    width: 52px;
+
+    margin-bottom: 8px;
+  }
+
+  .vantorFooter__eyebrow {
+    font-size: 6px;
+
+    letter-spacing: 0.22em;
+  }
+
+  .vantorFooter__brand {
+    width: 100%;
+
+    margin-top: 20px;
+
+    padding:
+      0 4vw;
+
+    font-size:
+      clamp(82px, 25vw, 145px);
+
+    line-height: 0.88;
+
+    letter-spacing: 0.018em;
+
+    transform:
+      skewX(-5deg)
+      scaleX(0.88);
+  }
+
+  .vantorFooter__brand::after {
+    left: 13%;
+    right: 13%;
+
+    bottom: -11px;
+  }
+
+  .vantorFooter__statement {
+    width: 82%;
+
+    margin-top: 29px;
+
+    font-size: 6.5px;
+
+    line-height: 1.65;
+
+    letter-spacing: 0.14em;
+
+    white-space: normal;
+  }
+
+  .vantorFooter__giantV {
+    top: 45%;
+
+    font-size: 112vw;
+  }
+
+  .vantorFooter__content {
+    left: 20px;
+    right: 20px;
+    bottom: 12vh;
+
+    grid-template-columns:
+      1fr 1fr;
+
+    align-items: start;
+
+    gap: 30px;
+  }
+
+  .vantorFooter__column {
+    min-height: auto;
+  }
+
+  .vantorFooter__column--center {
+    display: none;
+  }
+
+  .vantorFooter__column--right {
+    align-items: flex-end;
+  }
+
+  .vantorFooter__bottom {
+    left: 20px;
+    right: 20px;
+    bottom: 3vh;
+
+    grid-template-columns:
+      1fr auto;
+
+    font-size: 5.5px;
+
+    gap: 15px;
+  }
+
+  .vantorFooter__bottom > span:nth-child(2) {
+    display: none;
+  }
+
+  .vantorFooter__bottomLinks {
+    gap: 10px;
+  }
+}

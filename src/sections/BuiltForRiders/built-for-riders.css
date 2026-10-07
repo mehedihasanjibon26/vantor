@@ -1,0 +1,527 @@
+.builtRiders {
+  position: relative;
+
+  z-index: 3;
+
+  width: 100%;
+  height: 310vh;
+
+  margin-top: -100vh;
+
+  background: #c90d08;
+}
+
+.builtRiders__sticky {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: #c90d08;
+
+  isolation: isolate;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.builtRiders__background {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 28% 52%,
+      rgba(255, 50, 35, 0.18) 0%,
+      rgba(255, 50, 35, 0) 42%
+    ),
+    linear-gradient(
+      135deg,
+      #d4140b 0%,
+      #c80d08 46%,
+      #b80805 100%
+    );
+}
+
+.builtRiders__shape {
+  position: absolute;
+
+  height: 150%;
+
+  background: rgba(80, 0, 0, 0.14);
+
+  transform: skewX(-17deg);
+
+  pointer-events: none;
+}
+
+.builtRiders__shape--one {
+  top: -25%;
+  left: -8%;
+
+  width: 24%;
+}
+
+.builtRiders__shape--two {
+  top: -20%;
+  left: 43%;
+
+  width: 16%;
+
+  opacity: 0.65;
+}
+
+.builtRiders__shape--three {
+  top: -28%;
+  right: -7%;
+
+  width: 24%;
+
+  opacity: 0.85;
+}
+
+/* =========================================================
+   HORSE BACKGROUND IMAGE - LARGE SHADOW
+   ========================================================= */
+
+.builtRiders__horse {
+  position: absolute;
+
+  /*
+   * Bigger and slightly more right,
+   * so head/neck/front legs can be seen
+   * around the bike's front area.
+   */
+  left: -4vw;
+  top: 35%;
+
+  z-index: 2;
+
+  width: min(82vw, 1320px);
+  height: 72vh;
+
+  transform: translateY(-50%);
+
+  pointer-events: none;
+
+  opacity: 0;
+
+  mix-blend-mode: multiply;
+
+  backface-visibility: hidden;
+
+  will-change: transform, opacity;
+}
+
+.builtRiders__horseImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: left top;
+
+  /*
+   * Keep the good lighter shadow feel
+   */
+  filter:
+    grayscale(1)
+    brightness(0.30)
+    contrast(1.25)
+    saturate(0)
+    sepia(0.45)
+    hue-rotate(-12deg)
+    blur(0.25px);
+
+  opacity: 0.42;
+
+  transform: scale(1);
+}
+
+/* =========================================================
+   BIKE
+   ========================================================= */
+
+.builtRiders__bike {
+  position: absolute;
+
+  left: -10vw;
+  bottom: -7vh;
+
+  z-index: 7;
+
+  width: min(70vw, 1160px);
+  height: 102vh;
+
+  transform-origin: left bottom;
+
+  pointer-events: none;
+
+  backface-visibility: hidden;
+
+  will-change: transform, opacity;
+}
+
+.builtRiders__bikeFloat {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  transform-origin: center center;
+
+  backface-visibility: hidden;
+
+  will-change: transform;
+}
+
+.builtRiders__bikeImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+  object-position: left bottom;
+
+  filter:
+    brightness(0.77)
+    contrast(1.16)
+    saturate(0.88)
+    drop-shadow(
+      18px 18px 22px rgba(60, 0, 0, 0.22)
+    );
+}
+
+/* =========================================================
+   CONTENT
+   ========================================================= */
+
+.builtRiders__content {
+  position: absolute;
+
+  top: 50%;
+  right: 2.2vw;
+
+  z-index: 9;
+
+  width: min(43vw, 710px);
+
+  transform: translateY(-50%);
+}
+
+/* =========================================================
+   EYEBROW
+   ========================================================= */
+
+.builtRiders__eyebrow {
+  margin: 0 0 18px 7px;
+
+  color: rgba(255, 245, 235, 0.86);
+
+  font-size: clamp(9px, 0.74vw, 13px);
+
+  font-weight: 900;
+
+  letter-spacing: 0.24em;
+
+  text-transform: uppercase;
+
+  will-change: transform, opacity;
+}
+
+/* =========================================================
+   HEADLINE
+   ========================================================= */
+
+.builtRiders__headline {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  width: 100%;
+
+  gap: clamp(14px, 2vh, 26px);
+}
+
+.builtRiders__headlineLine {
+  display: block;
+
+  margin: 0;
+  padding: 0;
+
+  color: #f4f0e6;
+
+  font-family:
+    Impact,
+    Haettenschweiler,
+    "Arial Black",
+    "Arial Narrow Bold",
+    sans-serif;
+
+  font-size: clamp(100px, 9.3vw, 192px);
+
+  font-weight: 900;
+  font-style: normal;
+
+  line-height: 0.75;
+
+  letter-spacing: 0.018em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  transform: skewX(-7deg);
+
+  transform-origin: left center;
+
+  text-shadow:
+    0 10px 20px rgba(55, 0, 0, 0.12);
+
+  backface-visibility: hidden;
+
+  will-change: transform, opacity;
+}
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.builtRiders__stats {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(90px, 1fr));
+
+  align-items: flex-start;
+
+  gap: clamp(32px, 4vw, 72px);
+
+  width: 100%;
+
+  margin-top: clamp(42px, 5vh, 72px);
+
+  padding-left: 7px;
+
+  will-change: transform, opacity;
+}
+
+.builtRiders__stat {
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 8px;
+}
+
+.builtRiders__statValue {
+  display: block;
+
+  min-width: 88px;
+
+  color: #f4f0e6;
+
+  font-family:
+    Impact,
+    Haettenschweiler,
+    "Arial Black",
+    sans-serif;
+
+  font-size: clamp(28px, 2.65vw, 48px);
+
+  font-weight: 900;
+
+  line-height: 0.94;
+
+  letter-spacing: 0.015em;
+
+  white-space: nowrap;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.builtRiders__statLabel {
+  color: rgba(255, 245, 235, 0.66);
+
+  font-size: clamp(7px, 0.58vw, 10px);
+
+  font-weight: 900;
+
+  line-height: 1;
+
+  letter-spacing: 0.18em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .builtRiders__horse {
+    left: -10vw;
+    top: 37%;
+
+    width: 96vw;
+    height: 66vh;
+  }
+
+  .builtRiders__horseImage {
+    filter:
+      grayscale(1)
+      brightness(0.32)
+      contrast(1.18)
+      saturate(0)
+      sepia(0.4)
+      hue-rotate(-12deg)
+      blur(0.2px);
+
+    opacity: 0.38;
+  }
+
+  .builtRiders__bike {
+    left: -17vw;
+    bottom: -4vh;
+
+    width: 78vw;
+    height: 96vh;
+  }
+
+  .builtRiders__content {
+    right: 1.5vw;
+
+    width: 46vw;
+  }
+
+  .builtRiders__headline {
+    gap: 14px;
+  }
+
+  .builtRiders__headlineLine {
+    font-size: clamp(78px, 9.2vw, 144px);
+
+    letter-spacing: 0.018em;
+  }
+
+  .builtRiders__stats {
+    gap: 24px;
+
+    margin-top: 36px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .builtRiders {
+    height: 285vh;
+
+    margin-top: -100vh;
+  }
+
+  .builtRiders__horse {
+    left: -26vw;
+    top: 40%;
+
+    width: 156vw;
+    height: 50vh;
+  }
+
+  .builtRiders__horseImage {
+    filter:
+      grayscale(1)
+      brightness(0.34)
+      contrast(1.12)
+      saturate(0)
+      sepia(0.35)
+      hue-rotate(-12deg)
+      blur(0.15px);
+
+    opacity: 0.30;
+  }
+
+  .builtRiders__bike {
+    left: -36vw;
+    bottom: -4vh;
+
+    width: 128vw;
+    height: 78vh;
+
+    opacity: 0.76;
+  }
+
+  .builtRiders__content {
+    top: 24%;
+    right: 3%;
+
+    width: 70vw;
+
+    transform: none;
+  }
+
+  .builtRiders__eyebrow {
+    margin-left: 3px;
+    margin-bottom: 11px;
+
+    font-size: 7px;
+
+    letter-spacing: 0.18em;
+  }
+
+  .builtRiders__headline {
+    gap: 10px;
+  }
+
+  .builtRiders__headlineLine {
+    font-size: clamp(60px, 16vw, 104px);
+
+    line-height: 0.79;
+
+    letter-spacing: 0.018em;
+  }
+
+  .builtRiders__stats {
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 14px;
+
+    margin-top: 30px;
+
+    padding-left: 2px;
+  }
+
+  .builtRiders__stat {
+    gap: 5px;
+  }
+
+  .builtRiders__statValue {
+    min-width: auto;
+
+    font-size: clamp(18px, 5vw, 26px);
+
+    letter-spacing: 0.01em;
+  }
+
+  .builtRiders__statLabel {
+    font-size: 5.5px;
+
+    letter-spacing: 0.1em;
+  }
+}

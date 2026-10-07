@@ -1,0 +1,567 @@
+.athletes {
+  position: relative;
+
+  z-index: 5;
+
+  width: 100%;
+  height: 330vh;
+
+  margin-top: -100vh;
+
+  background: #050505;
+}
+
+.athletes__sticky {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: #050505;
+
+  isolation: isolate;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.athletes__background {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 42%,
+      rgba(225, 6, 0, 0.035) 0%,
+      rgba(225, 6, 0, 0) 45%
+    ),
+    linear-gradient(
+      180deg,
+      #0a0a0a 0%,
+      #050505 45%,
+      #030303 100%
+    );
+}
+
+/* =========================================================
+   RACING LINES
+   ========================================================= */
+
+.athletes__racingLines {
+  position: absolute;
+
+  top: 0;
+  left: 3vw;
+  right: 3vw;
+
+  z-index: 30;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  padding-top: 4px;
+
+  transform-origin: left center;
+
+  will-change: transform;
+}
+
+.athletes__racingLines span {
+  display: block;
+
+  width: 100%;
+  height: 4px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(225, 6, 0, 0) 0%,
+      #e10600 8%,
+      #ff160d 50%,
+      #e10600 92%,
+      rgba(225, 6, 0, 0) 100%
+    );
+
+  box-shadow:
+    0 0 8px rgba(225, 6, 0, 0.28);
+}
+
+.athletes__racingLines span:nth-child(2) {
+  opacity: 0.72;
+}
+
+.athletes__racingLines span:nth-child(3) {
+  opacity: 0.42;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.athletes__header {
+  position: absolute;
+
+  top: 7.5vh;
+  left: 2.4vw;
+  right: 3vw;
+
+  z-index: 25;
+
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 40px;
+}
+
+/* =========================================================
+   TITLE
+   ========================================================= */
+
+.athletes__title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  color: #f3efe6;
+
+  font-family:
+    Impact,
+    Haettenschweiler,
+    "Arial Black",
+    sans-serif;
+
+  font-size:
+    clamp(38px, 3.5vw, 68px);
+
+  font-weight: 900;
+
+  font-style: italic;
+
+  line-height: 1;
+
+  letter-spacing: 0.025em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  transform:
+    skewX(-8deg);
+
+  backface-visibility: hidden;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.athletes__slash {
+  color: #e10600;
+
+  font-size: 1.1em;
+
+  font-weight: 1000;
+}
+
+/* =========================================================
+   DESCRIPTION
+   ========================================================= */
+
+.athletes__description {
+  width:
+    min(27vw, 430px);
+
+  margin: 2px 0 0;
+
+  color:
+    rgba(243, 239, 230, 0.62);
+
+  font-size:
+    clamp(9px, 0.72vw, 12px);
+
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+/* =========================================================
+   ROWS WRAPPER
+   ========================================================= */
+
+.athletes__rows {
+  position: absolute;
+
+  top: 19vh;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 10;
+
+  overflow: hidden;
+}
+
+/* =========================================================
+   ATHLETE ROW
+   ========================================================= */
+
+.athletes__row {
+  position: absolute;
+
+  left: 0;
+
+  display: flex;
+
+  align-items: stretch;
+
+  gap: 10px;
+
+  width: max-content;
+
+  backface-visibility: hidden;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.athletes__row--top {
+  top: 0;
+
+  height: 39vh;
+}
+
+.athletes__row--bottom {
+  top: calc(39vh + 10px);
+
+  height: 39vh;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.athletes__card {
+  position: relative;
+
+  flex: 0 0
+    clamp(330px, 27vw, 540px);
+
+  height: 100%;
+
+  overflow: hidden;
+
+  /*
+   * Reference-er moto angled shape
+   */
+  clip-path:
+    polygon(
+      8% 0,
+      100% 0,
+      92% 100%,
+      0 100%
+    );
+
+  background: #110000;
+
+  border:
+    1px solid rgba(225, 6, 0, 0.18);
+
+  cursor: pointer;
+
+  backface-visibility: hidden;
+
+  transition:
+    transform 550ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 500ms ease;
+}
+
+.athletes__card:hover {
+  transform:
+    scale(1.025);
+
+  filter:
+    brightness(1.08);
+}
+
+/* =========================================================
+   INNER
+   ========================================================= */
+
+.athletes__cardInner {
+  position: absolute;
+
+  inset: 0;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      #a90000 0%,
+      #e10600 45%,
+      #ff541f 100%
+    );
+}
+
+/* =========================================================
+   IMAGE
+   ========================================================= */
+
+.athletes__image {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  object-position:
+    center center;
+
+  transform:
+    scale(1.03);
+
+  filter:
+    brightness(0.88)
+    contrast(1.13)
+    saturate(1.1);
+
+  transition:
+    transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 650ms ease;
+}
+
+.athletes__card:hover
+.athletes__image {
+  transform:
+    scale(1.08);
+
+  filter:
+    brightness(1)
+    contrast(1.1)
+    saturate(1.2);
+}
+
+/* =========================================================
+   CARD SHADE
+   ========================================================= */
+
+.athletes__cardShade {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.02) 0%,
+      rgba(0, 0, 0, 0) 44%,
+      rgba(0, 0, 0, 0.16) 72%,
+      rgba(0, 0, 0, 0.68) 100%
+    );
+}
+
+/* =========================================================
+   INFO
+   ========================================================= */
+
+.athletes__cardInfo {
+  position: absolute;
+
+  left: 9%;
+  bottom: 7%;
+
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 8px;
+}
+
+.athletes__country {
+  color:
+    rgba(255, 255, 255, 0.76);
+
+  font-size:
+    clamp(7px, 0.55vw, 10px);
+
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.athletes__country::before {
+  content: "▰";
+
+  margin-right: 6px;
+
+  color:
+    rgba(255, 255, 255, 0.82);
+}
+
+.athletes__name {
+  max-width: 78%;
+
+  color: #f5f1e8;
+
+  font-family:
+    Impact,
+    Haettenschweiler,
+    "Arial Black",
+    sans-serif;
+
+  font-size:
+    clamp(24px, 2vw, 40px);
+
+  font-weight: 900;
+
+  line-height: 0.9;
+
+  letter-spacing: 0.025em;
+
+  text-transform: uppercase;
+
+  text-shadow:
+    0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .athletes__header {
+    top: 7vh;
+  }
+
+  .athletes__title {
+    font-size:
+      clamp(32px, 4vw, 52px);
+  }
+
+  .athletes__description {
+    width: 34vw;
+  }
+
+  .athletes__rows {
+    top: 18vh;
+  }
+
+  .athletes__row--top,
+  .athletes__row--bottom {
+    height: 40vh;
+  }
+
+  .athletes__row--bottom {
+    top: calc(40vh + 8px);
+  }
+
+  .athletes__card {
+    flex-basis:
+      clamp(290px, 34vw, 430px);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .athletes {
+    height: 320vh;
+
+    margin-top: -100vh;
+  }
+
+  .athletes__racingLines {
+    left: 10px;
+    right: 10px;
+
+    gap: 3px;
+  }
+
+  .athletes__racingLines span {
+    height: 2px;
+  }
+
+  .athletes__header {
+    top: 5vh;
+    left: 16px;
+    right: 16px;
+  }
+
+  .athletes__title {
+    gap: 10px;
+
+    font-size:
+      clamp(28px, 8vw, 44px);
+  }
+
+  .athletes__description {
+    display: none;
+  }
+
+  .athletes__rows {
+    top: 13vh;
+  }
+
+  .athletes__row--top {
+    height: 40vh;
+  }
+
+  .athletes__row--bottom {
+    top: calc(40vh + 7px);
+
+    height: 40vh;
+  }
+
+  .athletes__row {
+    gap: 6px;
+  }
+
+  .athletes__card {
+    flex-basis: 76vw;
+
+    clip-path:
+      polygon(
+        7% 0,
+        100% 0,
+        93% 100%,
+        0 100%
+      );
+  }
+
+  .athletes__name {
+    font-size:
+      clamp(22px, 7vw, 32px);
+  }
+
+  .athletes__country {
+    font-size: 6px;
+  }
+}

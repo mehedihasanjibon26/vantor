@@ -1,0 +1,752 @@
+.newDrops {
+  position: relative;
+
+  z-index: 4;
+
+  width: 100%;
+  height: 340vh;
+
+  margin-top: -100vh;
+
+  background: #050505;
+}
+
+.newDrops__sticky {
+  position: sticky;
+
+  top: 0;
+
+  width: 100%;
+  height: 100vh;
+
+  overflow: hidden;
+
+  background: #050505;
+
+  isolation: isolate;
+}
+
+/* =========================================================
+   BACKGROUND
+   ========================================================= */
+
+.newDrops__background {
+  position: absolute;
+  inset: 0;
+
+  z-index: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 40%,
+      rgba(255, 255, 255, 0.018) 0%,
+      rgba(255, 255, 255, 0) 40%
+    ),
+    linear-gradient(
+      180deg,
+      #080808 0%,
+      #050505 50%,
+      #030303 100%
+    );
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.newDrops__topbar {
+  position: absolute;
+
+  top: 4.5vh;
+  left: 2vw;
+  right: 2vw;
+
+  z-index: 30;
+
+  display: flex;
+
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 40px;
+}
+
+.newDrops__heading {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  color: #f3efe6;
+
+  font-family:
+    Impact,
+    Haettenschweiler,
+    "Arial Black",
+    sans-serif;
+
+  font-size: clamp(34px, 3.4vw, 66px);
+
+  font-weight: 900;
+  font-style: italic;
+
+  line-height: 1;
+
+  letter-spacing: 0.035em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  transform: skewX(-7deg);
+
+  backface-visibility: hidden;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+.newDrops__headingSlash {
+  color: #e10600;
+
+  font-size: 1.16em;
+
+  transform: skewX(-8deg);
+}
+
+.newDrops__description {
+  width: min(27vw, 430px);
+
+  margin: 0;
+
+  color: rgba(243, 239, 230, 0.68);
+
+  font-size: clamp(9px, 0.72vw, 12px);
+
+  font-weight: 500;
+
+  line-height: 1.5;
+
+  will-change:
+    transform,
+    opacity;
+}
+
+/* =========================================================
+   MASONRY
+   ========================================================= */
+
+.newDrops__masonry {
+  position: absolute;
+
+  top: 13vh;
+  right: 1vw;
+  bottom: 2vh;
+  left: 1vw;
+
+  z-index: 10;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  grid-template-rows:
+    repeat(10, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+/* =========================================================
+   CARD
+   ========================================================= */
+
+.newDrops__card {
+  position: relative;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255, 255, 255, 0.022),
+      transparent 50%
+    ),
+    #070707;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  backface-visibility: hidden;
+
+  will-change:
+    transform,
+    opacity;
+
+  transition:
+    border-color 550ms ease,
+    box-shadow 550ms ease,
+    background 550ms ease;
+}
+
+.newDrops__card:hover {
+  border-color:
+    rgba(225, 6, 0, 0.95);
+
+  box-shadow:
+    0 0 0 1px rgba(225, 6, 0, 0.08),
+    0 0 34px rgba(225, 6, 0, 0.1);
+}
+
+/* =========================================================
+   CARD POSITIONS
+   ========================================================= */
+
+.newDrops__card--1 {
+  grid-column: 1;
+  grid-row: 1 / span 4;
+}
+
+.newDrops__card--2 {
+  grid-column: 2;
+  grid-row: 2 / span 4;
+}
+
+.newDrops__card--3 {
+  grid-column: 3;
+  grid-row: 1 / span 4;
+}
+
+.newDrops__card--4 {
+  grid-column: 4;
+  grid-row: 2 / span 4;
+}
+
+.newDrops__card--5 {
+  grid-column: 1;
+  grid-row: 6 / span 4;
+}
+
+.newDrops__card--6 {
+  grid-column: 2;
+  grid-row: 7 / span 4;
+}
+
+.newDrops__card--7 {
+  grid-column: 3;
+  grid-row: 6 / span 4;
+}
+
+.newDrops__card--8 {
+  grid-column: 4;
+  grid-row: 7 / span 4;
+}
+
+/* =========================================================
+   CARD NUMBER
+   ========================================================= */
+
+.newDrops__cardNumber {
+  position: absolute;
+
+  top: 14px;
+  left: 16px;
+
+  z-index: 30;
+
+  color:
+    rgba(243, 239, 230, 0.38);
+
+  font-size:
+    clamp(9px, 0.8vw, 14px);
+
+  font-weight: 500;
+
+  letter-spacing: 0.06em;
+
+  transition:
+    color 500ms ease;
+}
+
+.newDrops__card:hover
+.newDrops__cardNumber {
+  color: #ff2016;
+}
+
+/* =========================================================
+   VISUAL
+   ========================================================= */
+
+.newDrops__visual {
+  position: absolute;
+
+  inset:
+    0
+    0
+    42px
+    0;
+
+  z-index: 1;
+
+  overflow: hidden;
+
+  background: #070707;
+}
+
+/* =========================================================
+   RED HOVER BACKDROP
+   ========================================================= */
+
+.newDrops__redBackdrop {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 1;
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      circle at 50% 45%,
+      #ff3a21 0%,
+      #e20b05 30%,
+      #920000 58%,
+      #210000 82%,
+      #080000 100%
+    );
+
+  transform:
+    scale(1.08);
+
+  transition:
+    opacity 700ms ease,
+    transform 950ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.newDrops__card:hover
+.newDrops__redBackdrop {
+  opacity: 1;
+
+  transform:
+    scale(1);
+}
+
+/* =========================================================
+   HALO
+   ========================================================= */
+
+.newDrops__halo {
+  position: absolute;
+
+  left: 50%;
+  top: 42%;
+
+  z-index: 2;
+
+  width: 92%;
+  height: 34%;
+
+  border-radius: 50%;
+
+  transform:
+    translate(-50%, -50%)
+    scale(0.58);
+
+  opacity: 0;
+
+  border:
+    clamp(4px, 0.55vw, 10px)
+    solid
+    rgba(255, 190, 155, 0.92);
+
+  box-shadow:
+    0 0 15px rgba(255, 170, 125, 0.8),
+    0 0 35px rgba(255, 60, 25, 0.8),
+    0 0 75px rgba(225, 6, 0, 0.65),
+    inset 0 0 18px rgba(255, 180, 140, 0.4);
+
+  transition:
+    opacity 700ms ease,
+    transform 1000ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.newDrops__card:hover
+.newDrops__halo {
+  opacity: 1;
+
+  transform:
+    translate(-50%, -50%)
+    scale(1);
+}
+
+/* =========================================================
+   RED MIST
+   ========================================================= */
+
+.newDrops__redMist {
+  position: absolute;
+
+  left: 50%;
+  bottom: -25%;
+
+  z-index: 3;
+
+  width: 130%;
+  height: 70%;
+
+  transform:
+    translateX(-50%)
+    scale(0.8);
+
+  opacity: 0;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      rgba(255, 25, 10, 0.85) 0%,
+      rgba(160, 0, 0, 0.42) 38%,
+      transparent 72%
+    );
+
+  filter: blur(22px);
+
+  transition:
+    opacity 750ms ease,
+    transform 950ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.newDrops__card:hover
+.newDrops__redMist {
+  opacity: 0.72;
+
+  transform:
+    translateX(-50%)
+    scale(1);
+}
+
+/* =========================================================
+   IMAGE LAYERS
+   ========================================================= */
+
+.newDrops__imageLayer {
+  position: absolute;
+
+  inset: 0;
+
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 950ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* DEFAULT PRODUCT */
+
+.newDrops__imageLayer--default {
+  z-index: 5;
+
+  opacity: 1;
+
+  transform:
+    scale(1);
+}
+
+/* HOVER RIDER */
+
+.newDrops__imageLayer--hover {
+  z-index: 6;
+
+  opacity: 0;
+
+  transform:
+    scale(1.08)
+    translateY(3%);
+}
+
+/* DEFAULT IMAGE */
+
+.newDrops__productImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position:
+    center;
+
+  padding:
+    clamp(18px, 2vw, 38px);
+
+  filter:
+    brightness(0.72)
+    contrast(1.15)
+    saturate(0.8);
+}
+
+/* RIDER IMAGE */
+
+.newDrops__riderImage {
+  width: 100%;
+  height: 100%;
+
+  object-fit: contain;
+
+  object-position:
+    center bottom;
+
+  padding:
+    clamp(6px, 0.8vw, 14px)
+    clamp(8px, 1vw, 18px)
+    0;
+
+  filter:
+    brightness(0.78)
+    contrast(1.28)
+    saturate(1.25)
+    drop-shadow(
+      0 0 22px rgba(255, 25, 10, 0.28)
+    );
+}
+
+/* =========================================================
+   HOVER IMAGE SWITCH
+   ========================================================= */
+
+.newDrops__card:hover
+.newDrops__imageLayer--default {
+  opacity: 0;
+
+  transform:
+    scale(0.92);
+}
+
+.newDrops__card:hover
+.newDrops__imageLayer--hover {
+  opacity: 1;
+
+  transform:
+    scale(1)
+    translateY(0);
+}
+
+/* =========================================================
+   PRODUCT BAR
+   ========================================================= */
+
+.newDrops__productBar {
+  position: absolute;
+
+  right: 0;
+  bottom: 0;
+  left: 34%;
+
+  z-index: 30;
+
+  min-height: 42px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  padding:
+    9px
+    14px;
+
+  background:
+    rgba(7, 7, 7, 0.97);
+
+  border-top:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  border-left:
+    1px solid rgba(255, 255, 255, 0.12);
+
+  clip-path:
+    polygon(
+      10% 0,
+      100% 0,
+      100% 100%,
+      0 100%,
+      0 34%
+    );
+
+  transition:
+    border-color 500ms ease,
+    background 500ms ease;
+}
+
+.newDrops__card:hover
+.newDrops__productBar {
+  border-color:
+    rgba(225, 6, 0, 0.85);
+
+  background:
+    rgba(12, 4, 4, 0.98);
+}
+
+.newDrops__productName {
+  color:
+    rgba(243, 239, 230, 0.92);
+
+  font-size:
+    clamp(7px, 0.62vw, 10px);
+
+  font-weight: 900;
+
+  letter-spacing: 0.06em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+.newDrops__productPrice {
+  color: #e10600;
+
+  font-size:
+    clamp(7px, 0.6vw, 10px);
+
+  font-weight: 900;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .newDrops__topbar {
+    top: 4vh;
+  }
+
+  .newDrops__masonry {
+    top: 12vh;
+  }
+
+  .newDrops__description {
+    width: 34vw;
+  }
+
+  .newDrops__productImage {
+    padding: 22px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .newDrops {
+    height: 330vh;
+
+    margin-top: -100vh;
+  }
+
+  .newDrops__topbar {
+    top: 3vh;
+    left: 14px;
+    right: 14px;
+  }
+
+  .newDrops__description {
+    display: none;
+  }
+
+  .newDrops__heading {
+    gap: 10px;
+
+    font-size:
+      clamp(30px, 9vw, 48px);
+  }
+
+  .newDrops__masonry {
+    top: 10vh;
+    right: 8px;
+    bottom: 2vh;
+    left: 8px;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    grid-template-rows:
+      repeat(16, minmax(0, 1fr));
+
+    gap: 8px;
+  }
+
+  .newDrops__card--1 {
+    grid-column: 1;
+    grid-row: 1 / span 4;
+  }
+
+  .newDrops__card--2 {
+    grid-column: 2;
+    grid-row: 2 / span 4;
+  }
+
+  .newDrops__card--3 {
+    grid-column: 1;
+    grid-row: 5 / span 4;
+  }
+
+  .newDrops__card--4 {
+    grid-column: 2;
+    grid-row: 6 / span 4;
+  }
+
+  .newDrops__card--5 {
+    grid-column: 1;
+    grid-row: 9 / span 4;
+  }
+
+  .newDrops__card--6 {
+    grid-column: 2;
+    grid-row: 10 / span 4;
+  }
+
+  .newDrops__card--7 {
+    grid-column: 1;
+    grid-row: 13 / span 4;
+  }
+
+  .newDrops__card--8 {
+    grid-column: 2;
+    grid-row: 14 / span 3;
+  }
+
+  .newDrops__productBar {
+    left: 12%;
+
+    min-height: 34px;
+
+    padding:
+      6px
+      8px;
+  }
+
+  .newDrops__productName,
+  .newDrops__productPrice {
+    font-size: 5.5px;
+  }
+
+  .newDrops__productImage {
+    padding: 14px;
+  }
+
+  .newDrops__cardNumber {
+    top: 9px;
+    left: 10px;
+
+    font-size: 7px;
+  }
+
+  .newDrops__halo {
+    border-width: 4px;
+  }
+}
